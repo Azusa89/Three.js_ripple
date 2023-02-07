@@ -6,9 +6,20 @@ import { Suspense } from "react";
 
 function Points() {
   const imgTex = useLoader(THREE.TextureLoader, circleImg);
+
+  let positions = useMemo(() => {
+    let positions = [];
+  });
   return (
     <points>
-      <bufferGeometry attach="geomentry"></bufferGeometry>
+      <bufferGeometry attach="geomentry">
+        <bufferAttribute
+          attachObject={["attributes", "position"]}
+          array={positions}
+          count={positions.length / 3}
+          itemSize={3}
+        />
+      </bufferGeometry>
 
       <pointsMaterial
         attach="material"
