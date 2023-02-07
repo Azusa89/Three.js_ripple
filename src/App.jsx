@@ -4,7 +4,25 @@ import { Canvas } from "react-three-fiber";
 import circleImg from "./assets/circle.png";
 import { Suspense } from "react";
 
-function Points() {}
+function Points() {
+  const imgTex = useLoader(THREE.TextureLoader, circleImg);
+  return (
+    <points>
+      <bufferGeometry attach="geomentry"></bufferGeometry>
+
+      <pointsMaterial
+        attach="material"
+        map={imgTex}
+        color={0x00aaff}
+        size={0.5}
+        sizeAttenuation
+        transparent={false}
+        alphaTest={0.5}
+        opacity={1.0}
+      />
+    </points>
+  );
+}
 
 function AnimationCanvas() {
   return (
@@ -12,7 +30,9 @@ function AnimationCanvas() {
       colorManagement={false}
       camera={{ position: [100, 10, 0], fov: 75 }}
     >
-      <Points />
+      <Suspense fallback={null}>
+        <Points />
+      </Suspense>
     </Canvas>
   );
 }
@@ -20,7 +40,7 @@ function AnimationCanvas() {
 function App() {
   return (
     <div className="anim">
-      <Suspense fallvback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <AnimationCanvas />
       </Suspense>
     </div>
