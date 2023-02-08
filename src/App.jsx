@@ -7,9 +7,24 @@ import { Suspense } from "react";
 function Points() {
   const imgTex = useLoader(THREE.TextureLoader, circleImg);
 
+  const counter = 100;
+  const sep = 3;
+
   let positions = useMemo(() => {
     let positions = [];
-  });
+
+    for (let xi = 0; xi < count; xi++) {
+      for (let zi = 0; zi < count; zi++) {
+        let x = sep * (xi - count / 2);
+        let z = sep * (zi - count / 2);
+        let y = 0;
+        position.push(x, y, z);
+      }
+    }
+
+    return new Float32Array(positions);
+  }, [count, sep]);
+
   return (
     <points>
       <bufferGeometry attach="geomentry">
