@@ -1,6 +1,6 @@
 import "./App.css";
 import * as THREE from "three";
-import { Canvas } from "react-three-fiber";
+import { Canvas } from "@react-three/fiber";
 import circleImg from "./assets/circle.png";
 import { Suspense } from "react";
 
@@ -29,7 +29,7 @@ function Points() {
     <points>
       <bufferGeometry attach="geomentry">
         <bufferAttribute
-          attachObject={["attributes", "position"]}
+          attach="attributes-position"
           array={positions}
           count={positions.length / 3}
           itemSize={3}
